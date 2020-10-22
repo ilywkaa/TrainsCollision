@@ -15,9 +15,6 @@ namespace RailwaySimulator
         }
 
 
-        public Station()
-        {
-            
-        }
+        public Station() { }
     }
 }

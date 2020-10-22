@@ -6,13 +6,11 @@ namespace RailwaySimulator
 {
     public class RailwaySystem
     {
-        private readonly int _primeNumber;
         private readonly Dictionary<int, int> _lines;
         private readonly List<Run> _runs;
 
-        public RailwaySystem(Railway railway, int primeNumber  = 4201)
+        public RailwaySystem(Railway railway)
         {
-            _primeNumber = primeNumber;
             _lines = new Dictionary<int, int>();
             _runs = new List<Run>();
 
@@ -43,6 +41,7 @@ namespace RailwaySimulator
                 }
             }
         }
+
 
         private RailwaySystem() { }
 
@@ -85,7 +84,10 @@ namespace RailwaySimulator
         
         private int GetLineHash(int source, int destination)
         {
-            return (source * destination) % _primeNumber;
+            int h0 = (source << 16) | destination;
+            int h1 = (destination << 16) | source;
+
+            return (source < destination) ? h0 : h1;
         }
 
 
